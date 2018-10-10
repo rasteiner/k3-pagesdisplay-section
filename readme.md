@@ -9,7 +9,7 @@ You select and filter the pages with the query language, with a `query` property
 You can start the query with `site`, `page` (refers to the current page), or `pages` (which is equal to `site.pages`).
 
 ## Example
-Show all pages that have "foo" in their title:
+Show all pages that have "Foo" in their title:
 
 ```yaml
 sections:
@@ -25,7 +25,7 @@ Show sibling pages (exclude current page):
 ```yaml
 sections:
   mysection:
-    headline: Foo Pages
+    headline: Siblings
     type: pagesdisplay
     query: page.siblings(false)
 ```
