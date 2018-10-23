@@ -1,0 +1,16 @@
+{
+  "name": "rasteiner/k3-pagesdisplay-section",
+  "description": "K3 plugin: display any page list in a section. Any parent, many parents, filtered, don't care.",
+  "authors": [
+    {
+      "name": "Roman Steiner",
+      "email": "roman@toastlab.ch"
+    }
+  ],
+  "license": "ISC",
+  "autoload": {
+    "files": [
+      "index.php"
+    ]
+  }
+}
