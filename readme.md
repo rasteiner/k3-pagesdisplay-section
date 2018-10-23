@@ -2,7 +2,12 @@ Display any page list in a Section. Any parent, many parents, filtered, don't ca
 On the other hand, you won't be able to sort the list or add new pages to it.
 
 # Install
+## Download Zip file
+
 Copy plugin folder into `site/plugins`
+
+## Composer
+Run `composer require rasteiner/k3-pagesdisplay-section`.
 
 # Usage
 You select and filter the pages with the query language, with a `query` property in the section yaml. 
