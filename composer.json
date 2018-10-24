@@ -7,6 +7,9 @@
       "email": "roman@toastlab.ch"
     }
   ],
+  "require": {
+    "getkirby/cms": "*"
+  },
   "license": "ISC",
   "autoload": {
     "files": [
