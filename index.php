@@ -7,6 +7,6 @@ use Kirby\Toolkit\Str;
 
 Kirby::plugin('rasteiner/k3-pagesdisplay-section', [
     'sections' => [
-        'pagesdisplay' => require __DIR__ . DS . 'src' . DS . 'PagesDisplaySection.php'
+        'pagesdisplay' => require __DIR__ . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'PagesDisplaySection.php'
     ]
 ]);
