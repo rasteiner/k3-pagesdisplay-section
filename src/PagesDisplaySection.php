@@ -4,7 +4,7 @@ use Kirby\Exception\InvalidArgumentException;
 use Kirby\Toolkit\Str;
 use Kirby\Toolkit\Query;
 
-$base = require kirby()->roots()->kirby . DS . 'config' . DS . 'sections' . DS . 'pages.php';
+$base = require kirby()->roots()->kirby . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'sections' . DIRECTORY_SEPARATOR . 'pages.php';
 
 return array_replace_recursive($base, [
     'props' => [
