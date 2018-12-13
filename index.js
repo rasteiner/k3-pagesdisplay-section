@@ -1,6 +1,6 @@
 panel.plugin('rasteiner/k3-pagesdisplay-section', {
-  sections: {
-    pagesdisplay: {
+  components: {
+    'k-pagesdisplay-section': {
       extends: 'k-pages-section'
     }
   }
