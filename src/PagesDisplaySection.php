@@ -3,8 +3,9 @@
 use Kirby\Exception\InvalidArgumentException;
 use Kirby\Toolkit\Str;
 use Kirby\Toolkit\Query;
+use Kirby\Cms\Section;
 
-$base = require kirby()->roots()->kirby . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'sections' . DIRECTORY_SEPARATOR . 'pages.php';
+$base = Section::$types['pages'];
 
 return array_replace_recursive($base, [
     'props' => [
