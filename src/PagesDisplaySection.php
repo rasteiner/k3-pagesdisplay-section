@@ -21,7 +21,8 @@ return array_replace_recursive($base, [
             $q = new Query($this->query, [
                 'site' => site(),
                 'page' => $this->model(),
-                'pages' => site()->pages()
+                'pages' => site()->pages(),
+                'kirby' => kirby()
             ]);
 
             $pages = $q->result();
