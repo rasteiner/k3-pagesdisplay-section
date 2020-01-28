@@ -11,7 +11,7 @@ Run `composer require rasteiner/k3-pagesdisplay-section`.
 
 # Usage
 You select and filter the pages with the query language, with a `query` property in the section yaml. 
-You can start the query with `site`, `page` (refers to the current page), or `pages` (which is equal to `site.pages`).
+You can start the query with `site`, `page` (refers to the current page), `pages` (which is equal to `site.pages`), or `kirby` (mainly to use `kirby.collection`).
 
 ## Example
 Show all pages that have "Foo" in their title:
