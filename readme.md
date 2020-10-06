@@ -21,7 +21,7 @@ sections:
   mysection:
     headline: Foo Pages
     type: pagesdisplay
-    query: site.index.filterBy(title, *=, Foo)
+    query: site.index.filterBy('title', '*=', 'Foo')
 ```
 
 
