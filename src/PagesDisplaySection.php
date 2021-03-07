@@ -28,6 +28,9 @@ return array_replace_recursive($base, [
             $pages = $q->result();
 
             if(is_a($pages, 'Kirby\\Cms\\Pages')) {
+                // show only readable
+                $pages = $pages->filterBy("isReadable", true);
+
                 // sort
                 if ($this->sortBy) {
                     $pages = $pages->sortBy(...Str::split($this->sortBy, ' '));
