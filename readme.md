@@ -1,20 +1,41 @@
-Display any page list in a Section. Any parent, many parents, filtered, don't care.   
-On the other hand, you won't be able to sort the list or add new pages to it.
+# Pages Display Section
 
-# Install
-## Download Zip file
+Display any page list in a section using [Kirby's query language](https://getkirby.com/docs/guide/blueprints/query-language). Any parent, many parents, filtered, don't care.
 
-Copy plugin folder into `site/plugins`
+> ℹ️ Note: While this functionality gives you a lot of freedom, you won't be able to sort the list or add new pages to the query.
 
-## Composer
-Run `composer require rasteiner/k3-pagesdisplay-section`.
+## Installation
 
-# Usage
-You select and filter the pages with the query language, with a `query` property in the section yaml. 
-You can start the query with `site`, `page` (refers to the current page), `pages` (which is equal to `site.pages`), or `kirby` (mainly to use `kirby.collection`).
+### Download
+
+Download and copy this repository to `/site/plugins/k3-pagesdisplay-section`.
+
+### Git submodule
+
+```bash
+git submodule add https://github.com/rasteiner/k3-pagesdisplay-section.git site/plugins/rasteiner/k3-pagesdisplay-section
+```
+
+### Composer
+
+```bash
+composer require rasteiner/k3-pagesdisplay-section
+```
+
+## Usage
+
+Create a section of your liking and add a `query` property. Within the query you may select and filter any pages by making use of [Kirby's query language](https://getkirby.com/docs/guide/blueprints/query-language).
+
+You can start the query with one of the following variables:
+
+- `site`
+- `page` (refers to the current page)
+- `pages` (which equals `site.pages`)
+- `kirby` (mainly to use with `kirby.collection`)
 
 ## Example
-Show all pages that have "Foo" in their title:
+
+### All pages with `Foo` in their title
 
 ```yaml
 sections:
@@ -24,8 +45,7 @@ sections:
     query: site.index.filterBy('title', '*=', 'Foo')
 ```
 
-
-Show sibling pages (exclude current page):
+## Sibling pages (exclude the current page)
 
 ```yaml
 sections:
