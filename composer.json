@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-    "getkirby/composer-installer": "^1.1"
+    "getkirby/composer-installer": "^2.1"
   },
   "license": "ISC"
 }
