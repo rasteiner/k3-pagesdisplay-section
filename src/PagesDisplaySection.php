@@ -53,6 +53,11 @@ $extension = [
                 $pages = $pages->sort(...$pages::sortArgs($this->sortBy));
             }
 
+            // Flip pages
+            if ($this->flip) {
+                $pages = $pages->flip();
+            }
+
             // Add pagination
             $pages = $pages->paginate([
                 'page' => $this->page,
