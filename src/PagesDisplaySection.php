@@ -5,6 +5,11 @@ use Kirby\Cms\Section;
 use Kirby\Toolkit\Query;
 
 $base = Section::$types['pages'];
+
+if (is_string($base)) {
+    $base = include $base;
+}
+
 $extension = [
     'props' => [
         'sortable' => function (bool $sortable = true) {
