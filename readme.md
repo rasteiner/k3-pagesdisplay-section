@@ -13,7 +13,7 @@ Download and copy this repository to `/site/plugins/k3-pagesdisplay-section`.
 ### Git submodule
 
 ```bash
-git submodule add https://github.com/rasteiner/k3-pagesdisplay-section.git site/plugins/rasteiner/k3-pagesdisplay-section
+git submodule add https://github.com/rasteiner/k3-pagesdisplay-section.git site/plugins/k3-pagesdisplay-section
 ```
 
 ### Composer
