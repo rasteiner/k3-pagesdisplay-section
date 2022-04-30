@@ -54,3 +54,27 @@ sections:
     type: pagesdisplay
     query: page.siblings(false)
 ```
+
+### Disable Controls
+
+In addition to leaving the controls (the status flag and the options dropdown) visible - the default, it's possible to either hide them completely or show only the status flag. 
+
+To completely hide the controls:
+```yaml 
+sections:
+  mysection:
+    headline: Siblings
+    type: pagesdisplay
+    query: page.siblings(false)
+    controls: false
+```
+
+To show only the status flag:
+```yaml 
+sections:
+  mysection:
+    headline: Siblings
+    type: pagesdisplay
+    query: page.siblings(false)
+    controls: flag
+```

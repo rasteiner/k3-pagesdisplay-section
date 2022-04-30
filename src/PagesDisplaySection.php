@@ -17,7 +17,14 @@ $extension = [
         },
         'query' => function (string $query = 'page.children') {
             return $query;
-        }
+        },
+        'controls' => function ($controls = true) {
+            if(!is_bool($controls) && $controls !== 'flag') {
+                throw new InvalidArgumentException('Invalid value for "controls" option. It must be either true, false or "flag"');
+            }
+
+            return $controls;
+        },
     ],
     'computed' => [
         'pages' => function () {
