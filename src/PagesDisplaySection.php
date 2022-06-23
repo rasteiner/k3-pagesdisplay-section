@@ -45,38 +45,49 @@ $extension = [
                 );
             }
 
-            // Loop for the best performance
-            foreach ($pages->data as $id => $page) {
-                // Remove all protected pages
-                if (!$page->isReadable()) {
-                    unset($pages->data[$id]);
-                    continue;
+            // filters pages that are protected and not in the templates list
+            // internal `filter()` method used instead of foreach loop that previously included `unset()`
+            // because `unset()` is updating the original data, `filter()` is just filtering
+            // also it has been tested that there is no performance difference
+            // even in 0.1 seconds on 100k virtual pages
+            $pages = $pages->filter(function ($page) {
+                // remove all protected pages
+                if ($page->isReadable() === false) {
+                    return false;
                 }
 
-                // Filter by all set templates
-                if ($this->templates && !in_array($page->intendedTemplate()->name(), $this->templates)) {
-                    unset($pages->data[$id]);
-                    continue;
+                // filter by all set templates
+                if ($this->templates && in_array($page->intendedTemplate()->name(), $this->templates) === false) {
+                    return false;
                 }
+
+                return true;
+            });
+
+            // search
+            if ($this->search === true && empty($this->searchterm) === false) {
+                $pages = $pages->search($this->searchterm);
             }
 
-            // Sort pages
+            // sort
             if ($this->sortBy) {
                 $pages = $pages->sort(...$pages::sortArgs($this->sortBy));
             }
 
-            // Flip pages
-            if ($this->flip) {
+            // flip
+            if ($this->flip === true) {
                 $pages = $pages->flip();
             }
 
-            // Add pagination
+            // pagination
             $pages = $pages->paginate([
-                'page' => $this->page,
-                'limit' => $this->limit
+                'page'   => $this->page,
+                'limit'  => $this->limit,
+                'method' => 'none' // the page is manually provided
             ]);
 
             return $pages;
+
         },
         'add' => function () {
             return false;
