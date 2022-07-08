@@ -9,17 +9,23 @@ panel.plugin("rasteiner/k3-pagesdisplay-section", {
           default: true,
         },
       },
-      methods: {
-        items(data) {
-          if(this.controls === false) return data;
+      computed: {
+        items() {
+          let data = o.computed.items.call(this);
 
-          data = o.methods.items.call(this, data);
-
-          if(this.controls === "flag") {
-            for(const item of data) {
-              delete item.flag.click
+          if (this.controls === false) {
+            for (const item of data) {
+              delete item.flag
               delete item.options
             }
+            return data;
+          }
+
+          if (this.controls === "flag") {
+            for (const item of data) {
+              delete item.options
+            }
+            return data;
           }
 
           return data;
