@@ -25,6 +25,8 @@ $extension = [
 
             return $controls;
         },
+        // kirby does magic checks in mixins to see if this is a "pages" section. Fake that, will be reset in toArray. 
+        'type' => fn() => 'pages',
     ],
     'computed' => [
         'pages' => function () {
@@ -95,7 +97,8 @@ $extension = [
         'sortable' => function () {
             return false;
         }
-    ]
+    ],
+    'toArray' => fn() => Closure::fromCallable($base['toArray'])->call($this) + [ 'type' => 'pagesdisplay' ]
 ];
 
 return array_replace_recursive($base, $extension);
