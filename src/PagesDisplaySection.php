@@ -29,6 +29,19 @@ $extension = [
         'type' => fn() => 'pages',
     ],
     'computed' => [
+        'parent' => function () {
+            $parent = $this->parentModel();
+
+            if (
+                $parent instanceof \Kirby\Cms\Site === false &&
+                $parent instanceof \Kirby\Cms\Page === false &&
+                $this->query === 'page.children'
+            ) {
+                throw new InvalidArgumentException("You must provide a query when using pagesdisplay in a user or file blueprint.");
+            }
+
+            return $parent;
+        },
         'pages' => function () {
             $kirby = kirby();
             $q = new Query($this->query, [
