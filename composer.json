@@ -2,7 +2,7 @@
   "name": "rasteiner/k3-pagesdisplay-section",
   "description": "K3 plugin: display any page list in a section. Any parent, many parents, filtered, don't care.",
   "type": "kirby-plugin",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "authors": [
     {
       "name": "Roman Steiner",
