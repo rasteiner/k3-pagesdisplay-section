@@ -2,7 +2,9 @@
 
 use Kirby\Exception\InvalidArgumentException;
 use Kirby\Cms\Section;
-use Kirby\Toolkit\Query;
+use Kirby\Cms\Page;
+use Kirby\Cms\Site;
+use Kirby\Cms\User;
 
 $base = Section::$types['pages'];
 
@@ -15,7 +17,7 @@ $extension = [
         'sortable' => function (bool $sortable = true) {
             return false;
         },
-        'query' => function (string $query = 'page.children') {
+        'query' => function (string $query = null) {
             return $query;
         },
         'controls' => function ($controls = true) {
@@ -29,16 +31,40 @@ $extension = [
         'type' => fn() => 'pages',
     ],
     'computed' => [
+        'parent' => function () {
+            return $this->parentModel();
+        },
         'pages' => function () {
+            $model = $this->parentModel();
+
+            $query = $this->query ?? match(true) {
+                is_a($model, Site::class) => 'pages',
+                is_a($model, User::class) => 'pages',
+                default => 'page.children',
+            };
+            
             $kirby = kirby();
-            $q = new Query($this->query, [
+            $isPageOrSite = is_a($model, Page::class) || is_a($model, Site::class);
+            $context = [
                 'kirby' => $kirby,
                 'site' => $kirby->site(),
                 'pages' => $kirby->site()->pages(),
-                'page' => $this->model()
-            ]);
+                'model' => $model,
+                'page' => $isPageOrSite ? $model : $model->parent(),
+                'user' => $isPageOrSite ? null : $model,
+                'file' => $isPageOrSite ? null : $model,
+            ];
 
-            $pages = $q->result();
+            $pages = null;
+
+            // check if Kirby\Query\Query class exists (new in 3.8)
+            if (class_exists('Kirby\\Query\\Query')) {
+                $q = new Kirby\Query\Query($query);
+                $pages = $q->resolve($context);
+            } else {
+                $q = new Kirby\Toolkit\Query($query, $context);
+                $pages = $q->result();
+            }
 
             if (!is_a($pages, \Kirby\Cms\Pages::class)) {
                 $result = $pages === null ? 'null' : get_class($pages);
